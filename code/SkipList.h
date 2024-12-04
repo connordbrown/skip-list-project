@@ -11,6 +11,15 @@ struct node {
     node* next[1];
 };
 
+class SkipList {
+    public:
+
+
+    private:
+        node* head_ptr;
+        int list_level;
+
+};
 
 
 #endif // SKIPLIST_H
