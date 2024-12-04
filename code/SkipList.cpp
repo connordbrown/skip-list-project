@@ -10,14 +10,14 @@ SkipList::SkipList() {
 SkipList::~SkipList() {}
 
 // create and initialize new node
-node* SkipList::init_node(string key, string data) {
+node* SkipList::init_node(string key, string data, node** next_ptrs) {
     // allocate memory for ret
     node* ret = new node;
 
-    // assign key and data to ret, set next pointer to NULL
+    // assign key, data, and next to ret
     ret->key = key;
     ret->data = data;
-    ret->next = NULL;
+    ret->next_ptrs = next_ptrs;
     
     return ret;
 }

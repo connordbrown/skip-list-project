@@ -10,7 +10,7 @@ struct node {
     string key;
     string data;
     // points to array of pointers
-    node** next;
+    node** next_ptrs;
 };
 
 class SkipList {
@@ -21,7 +21,7 @@ class SkipList {
     public:
         SkipList();
         ~SkipList();
-        node* init_node(string key, string data);
+        node* init_node(string key, string data, node** next_ptrs);
         string report();
         void insert(node* new_node);
         void insert_data(string key, string data);
