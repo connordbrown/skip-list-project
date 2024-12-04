@@ -3,6 +3,7 @@
 
 #define MAX_LEVEL 15
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -10,7 +11,7 @@ struct node {
     string key;
     string data;
     // points to array of pointers
-    node** next_ptrs;
+    vector<node*> next_ptrs;
 };
 
 class SkipList {
@@ -21,14 +22,15 @@ class SkipList {
     public:
         SkipList();
         ~SkipList();
-        node* init_node(string key, string data, node** next_ptrs);
-        string report();
+        node* get_head();
+        int get_level();
+        node* init_node(string key, string data);
         void insert(node* new_node);
         void insert_data(string key, string data);
         void remove(string key);
+        string report();
         int size();
         bool contains(string key);
-        node* get_head();
         void set_head(node* head_ptr);
 };
 
