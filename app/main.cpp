@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../code/Node.h"
+#include "../code/SkipList.h"
 
 using namespace std;
 
