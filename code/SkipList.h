@@ -30,8 +30,6 @@ class SkipList {
         bool contains(string key);
         node* get_head();
         void set_head(node* head_ptr);
-
 };
-
 
 #endif // SKIPLIST_H
