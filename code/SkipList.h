@@ -38,7 +38,7 @@ class SkipList {
         
         string report();
         int size();
-        bool contains(string key);
+        bool contains(string search_key);
 };
 
 #endif // SKIPLIST_H

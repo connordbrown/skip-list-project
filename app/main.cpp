@@ -6,6 +6,7 @@ using namespace std;
 int main(){
 
     SkipList list;
+    list.set_level(1);
 
     node* top = list.init_node("apple", "red");
     list.set_head(top);
@@ -16,19 +17,12 @@ int main(){
     
     // apple -> banana -> tangerine -> NULL
     // apple -> banana -> grape -> tangerine -> NULL
-    top->next_ptrs.push_back(node1);
-    node1->next_ptrs.push_back(node2);
-    node1->next_ptrs.push_back(node3);
-    node2->next_ptrs.push_back(node3);
-    node3->next_ptrs.push_back(NULL);
+    top->next_ptrs.at(0) = node1;
+    node1->next_ptrs.at(0) = node2;
+    node1->next_ptrs.at(1) = node3;
+    node2->next_ptrs.at(0) = node3;
 
-    node* current = list.get_head();
-    cout << current->key << endl;
-
-    // while (current != NULL) {
-    //     cout << current->key << endl;
-    //     current = current->next_ptrs.at(0); // Traverse at level 0
-    // }
+    cout << list.contains("zebra") << endl;
 
 
 

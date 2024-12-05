@@ -40,7 +40,7 @@ node* SkipList::init_node(string key, string data) {
     ret->data = data;
 
     // ret->next_ptrs is unchanged
-    //ret->next_ptrs.resize(MAX_LEVEL + 1, NULL);
+    ret->next_ptrs.resize(MAX_LEVEL + 1, NULL);
     
     return ret;
 }
@@ -103,13 +103,24 @@ void SkipList::remove(string key) {
 }
 
 string SkipList::report() {
-
+    return "";
 }
 
 int SkipList::size() {
-
+    return -1;
 }
 
-bool SkipList::contains(string key) {
-    
+bool SkipList::contains(string search_key) {
+    node* current = this->get_head();
+    for (int i = this->get_level(); i >= 0; --i) {
+        while (current->next_ptrs.at(i) != NULL && current->next_ptrs.at(i)->key < search_key) {
+            current = current->next_ptrs.at(i);
+        }
+    }
+    // reach bottom list - next key will be search key
+    current = current->next_ptrs.at(0);
+    if (current != NULL && current->key == search_key) {
+        return true;
+    }
+    return false;
 }
