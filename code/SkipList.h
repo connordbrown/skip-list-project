@@ -1,7 +1,6 @@
 #ifndef SKIPLIST_H
 #define SKIPLIST_H
 
-#define MAX_LEVEL 15
 #include <string>
 #include <vector>
 #include <cstdlib>
@@ -20,6 +19,7 @@ class SkipList {
     private:
         node* head_ptr;
         int list_level;
+        int MAX_LEVEL;
 
     public:
         SkipList();

@@ -4,6 +4,7 @@
 SkipList::SkipList() {
     head_ptr = NULL;
     list_level = 0;
+    MAX_LEVEL = 15;
 }
 
 // destructor
@@ -37,7 +38,7 @@ node* SkipList::init_node(string key, string data) {
     // assign key and data to ret, clear out next_ptrs
     ret->key = key;
     ret->data = data;
-    ret->next_ptrs.clear();
+    ret->next_ptrs.resize(MAX_LEVEL + 1, NULL);
     
     return ret;
 }
