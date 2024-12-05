@@ -5,16 +5,23 @@ using namespace std;
 
 int main(){
 
-    // Do some printing
-    // int var;
-    // cout << "Hello World, please enter a number " << endl;
-    // cin >> var;
-    // cout << "your number was : " << var << endl;
     SkipList list;
+
     node* top = list.init_node("apple", "red");
     list.set_head(top);
-    list.insert_data("banana", "yellow");
-    list.insert_data("grape", "green");
+
+    node* node1 = list.init_node("banana", "yellow");
+    node* node2 = list.init_node("grape", "green");
+    node* node3 = list.init_node("tangerine", "orange");
+    
+    // apple -> banana -> tangerine -> NULL
+    // apple -> banana -> grape -> tangerine -> NULL
+    top->next_ptrs.push_back(node1);
+    node1->next_ptrs.push_back(node2);
+    node1->next_ptrs.push_back(node3);
+    node2->next_ptrs.push_back(node3);
+    node3->next_ptrs.push_back(NULL);
+
     node* current = list.get_head();
     cout << current->key << endl;
 

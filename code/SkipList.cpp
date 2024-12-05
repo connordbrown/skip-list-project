@@ -38,7 +38,9 @@ node* SkipList::init_node(string key, string data) {
     // assign key and data to ret, clear out next_ptrs
     ret->key = key;
     ret->data = data;
-    ret->next_ptrs.resize(MAX_LEVEL + 1, NULL);
+
+    // ret->next_ptrs is unchanged
+    //ret->next_ptrs.resize(MAX_LEVEL + 1, NULL);
     
     return ret;
 }
@@ -53,8 +55,7 @@ void SkipList::insert(node* new_node) {
     // if list is empty
     if (current == NULL) {
         current = new_node;
-        current->next_ptrs.resize(MAX_LEVEL + 1, NULL); // Initialize next_ptrs
-        set_level(0); // Set the initial level
+        this->set_level(0); // Set the initial level
         return; // No need to proceed further 
     }
 
@@ -66,27 +67,29 @@ void SkipList::insert(node* new_node) {
     }
     current = current->next_ptrs.at(0);
 
-    // key already in list - update data only
-    if (current != NULL && current->key == new_node->key) {
-        current->data = new_node->data;
-        return;
-    }
+    // // key already in list - update data only
+    // if (current != NULL && current->key == new_node->key) {
+    //     current->data = new_node->data;
+    //     return;
+    // }
 
-    // determine level
-    for (new_level = 0; rand() < RAND_MAX / 2 && new_level < MAX_LEVEL; ++new_level) {
-        if (new_level > get_level()) {
-            for (int i = get_level() + 1; i <= new_level; ++i) {
-                update.at(i) = NULL;
-            }
-            set_level(new_level);
-        }
-    }
+    // // key not in list
 
-    // update forward links
-    for (int i = 0; i < new_level; ++i) {
-        current->next_ptrs.at(i) = update.at(i)->next_ptrs.at(i);
-        update.at(i)->next_ptrs.at(i) = current;
-    }
+    // // determine level
+    // for (new_level = 0; rand() < RAND_MAX / 2 && new_level < MAX_LEVEL; ++new_level) {
+    //     if (new_level > get_level()) {
+    //         for (int i = get_level() + 1; i <= new_level; ++i) {
+    //             update.at(i) = NULL;
+    //         }
+    //         set_level(new_level);
+    //     }
+    // }
+
+    // // update forward links
+    // for (int i = 0; i < new_level; ++i) {
+    //     current->next_ptrs.at(i) = update.at(i)->next_ptrs.at(i);
+    //     update.at(i)->next_ptrs.at(i) = current;
+    // }
 }
 
 // initialize data of and allocate memory for new_node and insert new_node into list
