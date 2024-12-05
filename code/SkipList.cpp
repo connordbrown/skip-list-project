@@ -46,26 +46,25 @@ node* SkipList::init_node(string key, string data) {
 }
 
 double SkipList::get_random_decimal() {
-    // seed random number generator with current time
-    srand(time(NULL));
-
     // generate a random number in the range [0...1)
-    double random_decimal = static_cast<double>(rand()) / (RAND_MAX + 1);
-
-    if (random_decimal < 0) {
-        return (-1 * random_decimal);
-    }
-    return random_decimal;
+    static mt19937 rng(random_device{}());
+    static uniform_real_distribution<double> dist(0.0, 0.9999);
+    return dist(rng);
 }
 
 int SkipList::get_random_level() {
     int level = 0;
     // fraction of nodes with level i pointers that also have level i + 1 pointers
-    int p_dist = 0.5;
+    double p_dist = 0.5;
+    
+    double random_decimal = get_random_decimal();
 
+    while (random_decimal < p_dist && level < MAX_LEVEL) {
+        level = level + 1;
+        random_decimal = get_random_decimal();
+    }
 
-
-
+    return level;
 }
 
 // insert a new node into the list

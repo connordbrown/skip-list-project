@@ -24,8 +24,8 @@ int main(){
 
     cout << list.contains("zebra") << endl;
 
-
-    cout << "Random number: " << list.get_random_decimal() << endl;
+    cout << "Random decimal: " << list.get_random_decimal() << endl;
+    cout << "Random level: " << list.get_random_level() << endl;
 
 
 
