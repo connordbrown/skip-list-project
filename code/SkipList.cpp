@@ -45,6 +45,29 @@ node* SkipList::init_node(string key, string data) {
     return ret;
 }
 
+double SkipList::get_random_decimal() {
+    // seed random number generator with current time
+    srand(time(NULL));
+
+    // generate a random number in the range [0...1)
+    double random_decimal = static_cast<double>(rand()) / (RAND_MAX + 1);
+
+    if (random_decimal < 0) {
+        return (-1 * random_decimal);
+    }
+    return random_decimal;
+}
+
+int SkipList::get_random_level() {
+    int level = 0;
+    // fraction of nodes with level i pointers that also have level i + 1 pointers
+    int p_dist = 0.5;
+
+
+
+
+}
+
 // insert a new node into the list
 void SkipList::insert(node* new_node) {
     // node* current = get_head();
@@ -111,13 +134,13 @@ int SkipList::size() {
 }
 
 bool SkipList::contains(string search_key) {
-    node* current = this->get_head();
-    for (int i = this->get_level(); i >= 0; --i) {
+    node* current = get_head();
+    for (int i = get_level(); i >= 0; --i) {
         while (current->next_ptrs.at(i) != NULL && current->next_ptrs.at(i)->key < search_key) {
             current = current->next_ptrs.at(i);
         }
     }
-    // reach bottom list - next key will be search key
+    // reach level containing search_key
     current = current->next_ptrs.at(0);
     if (current != NULL && current->key == search_key) {
         return true;
