@@ -25,6 +25,7 @@ class SkipList {
         SkipList();
         ~SkipList();
         node* get_head();
+        void set_head(node* head_ptr);
         int get_level();
         void set_level(int new_level);
         node* init_node(string key, string data);
@@ -34,7 +35,6 @@ class SkipList {
         string report();
         int size();
         bool contains(string key);
-        void set_head(node* head_ptr);
 };
 
 #endif // SKIPLIST_H

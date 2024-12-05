@@ -14,6 +14,11 @@ node* SkipList::get_head() {
     return this->head_ptr;
 }
 
+// set head node
+void SkipList::set_head(node* head_ptr) {
+    this->head_ptr = head_ptr;
+}
+
 // get list level
 int SkipList::get_level() {
     return this->list_level;
@@ -41,8 +46,17 @@ node* SkipList::init_node(string key, string data) {
 void SkipList::insert(node* new_node) {
     node* current = get_head();
     vector<node*> update(MAX_LEVEL + 1, NULL);
-    srand(time(0));
+    srand(time(NULL));
     int new_level;
+
+    // if list is empty
+    if (current == NULL) {
+        current = new_node;
+        current->next_ptrs.resize(MAX_LEVEL + 1, NULL); // Initialize next_ptrs
+        set_level(0); // Set the initial level
+        return; // No need to proceed further 
+    }
+
     for (unsigned int i = get_level(); i >= 0; --i) {
         while (current->next_ptrs.at(i) != NULL && current->next_ptrs.at(i)->key < current->key) {
             current = current->next_ptrs.at(i);
@@ -51,8 +65,9 @@ void SkipList::insert(node* new_node) {
     }
     current = current->next_ptrs.at(0);
 
-    // key already in list
+    // key already in list - update data only
     if (current != NULL && current->key == new_node->key) {
+        current->data = new_node->data;
         return;
     }
 
