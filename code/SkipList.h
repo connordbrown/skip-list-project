@@ -35,8 +35,8 @@ class SkipList {
         node* init_node(string key, string data);
         double get_random_decimal();
         int get_random_level();
-        void insert(node* new_node);
-        void insert_data(string key, string data);
+        void insert(string search_key, string new_data);
+        // void insert_data(string key, string data);
         void remove(string key);
         
         string report();

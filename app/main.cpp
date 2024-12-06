@@ -22,11 +22,12 @@ int main(){
     node1->next_ptrs.at(1) = node3;
     node2->next_ptrs.at(0) = node3;
 
-    cout << list.contains("zebra") << endl;
+    cout << node2->data << endl;
+    list.insert("grape", "purple");
+    cout << node2->data << endl;
 
-    cout << "Random decimal: " << list.get_random_decimal() << endl;
-    cout << "Random level: " << list.get_random_level() << endl;
-
+    list.insert("pear", "white");
+    cout << list.contains("pear") << endl;
 
 
     return 0;
