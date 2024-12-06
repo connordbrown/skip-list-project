@@ -26,6 +26,7 @@ int main(){
     list.insert("grape", "purple");
     cout << node2->data << endl;
 
+    // apple -> banana -> grape -> pear -> tangerine -> NULL
     list.insert("pear", "white");
     cout << list.contains("pear") << endl;
 

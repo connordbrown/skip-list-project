@@ -87,6 +87,8 @@ void SkipList::insert(string search_key, string new_data) {
         while (current->next_ptrs.at(i) != NULL && current->next_ptrs.at(i)->key < search_key) {
             current = current->next_ptrs.at(i);
         }
+        // node preceding insertion/update point
+        update.at(i) = current;
     }
     // reach level containing search key
     current = current->next_ptrs.at(0);
@@ -107,12 +109,10 @@ void SkipList::insert(string search_key, string new_data) {
         node* new_node = init_node(search_key, new_data);
         // update forward pointers
         for (int i = 0; i < get_level(); ++i) {
-            update.at(i) = get_head();
             new_node->next_ptrs.at(i) = update.at(i)->next_ptrs.at(i);
             update.at(i)->next_ptrs.at(i) = new_node;
         }
     }
-
 }
 
 // initialize data of and allocate memory for new_node and insert new_node into list
