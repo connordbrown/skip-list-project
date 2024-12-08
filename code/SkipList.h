@@ -36,8 +36,7 @@ class SkipList {
         double get_random_decimal();
         int get_random_level();
         void insert(string search_key, string new_data);
-        // void insert_data(string key, string data);
-        void remove(string key);
+        void remove(string search_key);
         
         string report();
         int size();

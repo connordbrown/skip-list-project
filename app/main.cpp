@@ -23,11 +23,16 @@ int main(){
     node2->next_ptrs.at(0) = node3;
 
     cout << node2->data << endl;
+    // update grape color
     list.insert("grape", "purple");
     cout << node2->data << endl;
 
     // apple -> banana -> grape -> pear -> tangerine -> NULL
+    // insert new fruit
     list.insert("pear", "white");
+    cout << list.contains("pear") << endl;
+
+    list.remove("pear");
     cout << list.contains("pear") << endl;
 
 

@@ -115,17 +115,42 @@ void SkipList::insert(string search_key, string new_data) {
     }
 }
 
-// initialize data of and allocate memory for new_node and insert new_node into list
-// void SkipList::insert_data(string key, string data) {
-//     node* new_node = init_node(key, data);
-//     this->insert(new_node);
-// }
+void SkipList::remove(string search_key) {
+    node* current = get_head();
+    vector<node*> update(MAX_LEVEL + 1, NULL);
 
-void SkipList::remove(string key) {
+    // if list is empty
+    if (current == NULL) {
+        return;
+    }
 
+    for (int i = get_level(); i >= 0; --i) {
+        while (current->next_ptrs.at(i) != NULL && current->next_ptrs.at(i)->key < search_key) {
+            current = current->next_ptrs.at(i);
+        }
+        update.at(i) = current;
+    }
+    // reach level containing search key
+    current = current->next_ptrs.at(0);
+
+    // if key in list
+    if (current != NULL && current->key == search_key) {
+        for (int i = 0; i < get_level(); ++i) {
+            if (update.at(i)->next_ptrs.at(i) != current) {
+                break;
+            }
+            update.at(i)->next_ptrs.at(i) = current->next_ptrs.at(i);
+        }
+        delete current;
+
+        while (get_level() > 0 && get_head()->next_ptrs.at(get_level()) == NULL) {
+            set_level(get_level() - 1);
+        }
+    }
 }
 
 string SkipList::report() {
+    // all levels of list?
     return "";
 }
 
