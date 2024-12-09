@@ -35,6 +35,8 @@ int main(){
     list.remove("pear");
     cout << list.contains("pear") << endl;
 
+    // FIXME: for search, insert and delete: test beginning, middle and end
+
 
     return 0;
 }

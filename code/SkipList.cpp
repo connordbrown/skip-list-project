@@ -139,10 +139,13 @@ void SkipList::remove(string search_key) {
             if (update.at(i)->next_ptrs.at(i) != current) {
                 break;
             }
+            // update forward pointers
             update.at(i)->next_ptrs.at(i) = current->next_ptrs.at(i);
         }
+        // delete node
         delete current;
 
+        // update list level
         while (get_level() > 0 && get_head()->next_ptrs.at(get_level()) == NULL) {
             set_level(get_level() - 1);
         }
@@ -153,6 +156,8 @@ string SkipList::report() {
     // all levels of list?
     return "";
 }
+
+// get_search_path()????
 
 int SkipList::size() {
     return -1;
