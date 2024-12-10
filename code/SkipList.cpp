@@ -83,6 +83,13 @@ void SkipList::insert(string search_key, string new_data) {
         return;
     }
 
+    // if search_key < head
+    if (search_key < current->key) {
+        
+    }
+
+
+
     for (int i = get_level(); i >= 0; --i) {
         while (current->next_ptrs.at(i) != NULL && current->next_ptrs.at(i)->key < search_key) {
             current = current->next_ptrs.at(i);
@@ -155,7 +162,6 @@ void SkipList::remove(string search_key) {
 
 // generate and return a string showing contents of each list level
 string SkipList::report() {
-    // all levels of list?
     string ret = "";
     int level = get_level();
     for (int i = level; i >= 0; --i) {

@@ -35,9 +35,7 @@ int main(){
     list.remove("pear");
     cout << list.contains("pear") << endl;
 
-    list.insert("peaa", "white");
-    list.insert("peab", "white");
-    list.insert("peac", "white");
+    list.insert("almond", "brown");
 
     cout << list.report() << endl;
     cout << list.size() << endl;
