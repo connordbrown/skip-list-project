@@ -71,7 +71,7 @@ int SkipList::get_random_level() {
 }
 
 // searches for and returns node with given search_key while updating pointers
-// in update_arr - helper for insert and delete
+// in update_arr - helper for insert() and delete()
 node* SkipList::find(node* current, string search_key, vector<node*>& update) {
     for (int i = get_level(); i >= 0; --i) {
         while (current->next_ptrs.at(i) != NULL && current->next_ptrs.at(i)->key < search_key) {

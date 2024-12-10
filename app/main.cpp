@@ -41,7 +41,7 @@ int main(){
     list.remove("pear");
     cout << list.contains("pear") << endl;
 
-    // FIXME: Why is this not always inserting???
+    // FIXME: Why is insert() not always inserting???
     list.insert("almond", "brown");
 
     cout << list.report() << endl;
