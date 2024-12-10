@@ -40,7 +40,7 @@ int main(){
     list.insert("peac", "white");
 
     cout << list.report() << endl;
-    cout << list.size();
+    cout << list.size() << endl;
     // FIXME: for search, insert and delete: test beginning, middle and end
 
 

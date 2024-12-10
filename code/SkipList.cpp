@@ -170,8 +170,6 @@ string SkipList::report() {
     return ret;
 }
 
-// get_search_path()????
-
 // calculate and return total number of nodes in list (via bottom level)
 int SkipList::size() {
     node* current = get_head();
@@ -183,17 +181,21 @@ int SkipList::size() {
     return count;
 }
 
-// determine whether or not list contains a key
+// determine whether or not list contains a key and print out search path
 bool SkipList::contains(string search_key) {
     node* current = get_head();
+    string search_path = "";
     for (int i = get_level(); i >= 0; --i) {
         while (current->next_ptrs.at(i) != NULL && current->next_ptrs.at(i)->key < search_key) {
+            search_path += current->key + " ";
             current = current->next_ptrs.at(i);
         }
     }
     // reach level containing search_key
     current = current->next_ptrs.at(0);
     if (current != NULL && current->key == search_key) {
+        search_path += current->key;
+        cout << search_path << endl;
         return true;
     }
     return false;
