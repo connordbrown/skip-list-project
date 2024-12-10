@@ -56,6 +56,7 @@ protected:
   static double max_grade;
 };
 
+// FIXME: Edit number of points
 double test_SkipList::total_grade = 0;
 double test_SkipList::max_grade = 38;
 

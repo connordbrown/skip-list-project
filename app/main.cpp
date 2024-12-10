@@ -35,6 +35,12 @@ int main(){
     list.remove("pear");
     cout << list.contains("pear") << endl;
 
+    list.insert("peaa", "white");
+    list.insert("peab", "white");
+    list.insert("peac", "white");
+
+    cout << list.report() << endl;
+    cout << list.size();
     // FIXME: for search, insert and delete: test beginning, middle and end
 
 

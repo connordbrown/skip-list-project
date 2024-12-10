@@ -45,14 +45,14 @@ node* SkipList::init_node(string key, string data) {
     return ret;
 }
 
-// generate a random decimal in the range [0...1)
+// generate and return a random decimal in the range [0...1)
 double SkipList::get_random_decimal() {
     static mt19937 rng(random_device{}());
     static uniform_real_distribution<double> dist(0.0, 0.9999);
     return dist(rng);
 }
 
-// generate a random level in the range [0, MAX_LEVEL]
+// generate and return a random level in the range [0, MAX_LEVEL]
 int SkipList::get_random_level() {
     int level = 0;
     // fraction of nodes with level i pointers that also have level i + 1 pointers
@@ -108,13 +108,14 @@ void SkipList::insert(string search_key, string new_data) {
         }
         node* new_node = init_node(search_key, new_data);
         // update forward pointers
-        for (int i = 0; i < get_level(); ++i) {
+        for (int i = 0; i < rand_lvl; ++i) {
             new_node->next_ptrs.at(i) = update.at(i)->next_ptrs.at(i);
             update.at(i)->next_ptrs.at(i) = new_node;
         }
     }
 }
 
+// remove a node from the list
 void SkipList::remove(string search_key) {
     node* current = get_head();
     vector<node*> update(MAX_LEVEL + 1, NULL);
@@ -152,17 +153,37 @@ void SkipList::remove(string search_key) {
     }
 }
 
+// generate and return a string showing contents of each list level
 string SkipList::report() {
     // all levels of list?
-    return "";
+    string ret = "";
+    int level = get_level();
+    for (int i = level; i >= 0; --i) {
+        node* current = get_head();
+        ret += to_string(i) + " ";
+        while (current != NULL) {
+            ret += current->key + " -> ";
+            current = current->next_ptrs.at(i);
+        }
+        ret += "NULL\n";
+    }
+    return ret;
 }
 
 // get_search_path()????
 
+// calculate and return total number of nodes in list (via bottom level)
 int SkipList::size() {
-    return -1;
+    node* current = get_head();
+    int count = 0;
+    while (current != NULL) {
+        count += 1;
+        current = current->next_ptrs.at(0);
+    }
+    return count;
 }
 
+// determine whether or not list contains a key
 bool SkipList::contains(string search_key) {
     node* current = get_head();
     for (int i = get_level(); i >= 0; --i) {
