@@ -11,17 +11,16 @@
 using namespace std;
 
 struct node {
-    string key;
-    string data;
-    // points to array of pointers
-    vector<node*> next_ptrs;
+    string key; // search key
+    string data; // node data
+    vector<node*> next_ptrs; // array of forward pointers
 };
 
 class SkipList {
     private:
-        node* head_ptr;
-        int list_level;
-        int MAX_LEVEL;
+        node* head_ptr; // head of list
+        int list_level; // current maximum level of list
+        int MAX_LEVEL; // absolute maximum level of list
 
     public:
         SkipList();
