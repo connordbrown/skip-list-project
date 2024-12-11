@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 #include "../code/SkipList.h"
 
 using namespace std;
@@ -8,7 +10,6 @@ int main(){
     SkipList list;
     list.set_level(1);
 
-    //node* top = list.init_node("apple", "red");
     node* top = list.init_node("HEAD", "");
     list.set_head(top);
 
@@ -17,8 +18,8 @@ int main(){
     node* node2 = list.init_node("grape", "green");
     node* node3 = list.init_node("tangerine", "orange");
     
-    // HEAD -> banana -> tangerine -> NULL
-    // HEAD -> apple -> banana -> grape -> tangerine -> NULL
+    // 1: HEAD -> banana -> tangerine -> NULL
+    // 0: HEAD -> apple -> banana -> grape -> tangerine -> NULL
     top->next_ptrs.at(1) = node1; 
     top->next_ptrs.at(0) = node0;
 
@@ -46,6 +47,33 @@ int main(){
 
     cout << list.report() << endl;
     cout << list.size() << endl;
+
+    list.insert("pear", "white");
+    cout << list.report() << endl;
+
+
+
+    // NOTES FOR APPLICATION
+    /*
+    Test using dictionary of words
+    Insert 10, 100, 1000, 10000, 100000, 200000, 300000, 400000 words
+    Delete word from each of those
+    Track time taken for process to prove logarithmic time wrt list size
+
+    // string filename = "words.txt"; // Replace with your filename
+    // ifstream file(filename);
+
+    // if (file.is_open()) {
+    //     string line;
+    //     while (getline(file, line)) {
+    //         std::cout << line << std::endl;
+    //     }
+    //     file.close();
+    // } else {
+    //     cerr << "Error: Unable to open file " << filename << endl;
+    // }
+
+    */
 
     return 0;
 }
