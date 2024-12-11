@@ -84,7 +84,7 @@ node* SkipList::find(node* current, string search_key, vector<node*>& update) {
     return current;
 }
 
-// inserts a new node into the list
+// inserts a new node into the list, or updates node if key already in list
 void SkipList::insert(string search_key, string new_data) {
     node* current = get_head();
     vector<node*> update(MAX_LEVEL, NULL);
@@ -183,7 +183,7 @@ int SkipList::size() {
     return count;
 }
 
-// determines whether or not list contains a key and print out search path
+// determines whether or not list contains a key and prints out search path
 bool SkipList::contains(string search_key) {
     node* current = get_head();
     string search_path = "";

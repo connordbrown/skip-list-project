@@ -15,7 +15,7 @@ Level 1: HEAD -> 6 -> 9 -> 25 -> NULL
 Level 0: HEAD -> 3 -> 6 -> 7 -> 9 -> 12 -> 19 -> 21 -> 25 -> 26 -> NULL
 ```
 
-Level 0 contains all elements of the list. Traversing it as is would give a time complexity of O(n). If we searched for 25 using standardlinear iteration, the search path would include 8 nodes:
+Level 0 contains all elements of the list. Traversing it as is would give a time complexity of O(n). If we searched for 25 using standard Linked List iteration, the search path would include 8 nodes:
 
 ```text
 3 -> 6 -> 7 -> 9 -> 12 -> 19 -> 21 -> 25
@@ -29,9 +29,15 @@ However, if we start at Level 3 and make our way down the levels using Skip List
 
 This search is much faster.
 
-For my implementation and demonstration, I use a common ordered set of data: an English dictionary. The nodes will contain words and their definitions, and I will record the time it takes to perform CRUD operations (search, insert, update, and delete). If my implementation is correct, then the runtimes will grow logarithmically with the size of the Skip List, proving the Skip List is a fast and viable alternative to a balanced tree data structure.
+For my implementation and demonstration, I used a common ordered set of data: an English dictionary. The nodes contain words and their definitions, and I record the time it takes to perform CRUD operations (search, insert, update, and delete). If my implementation is correct, then the runtimes will grow logarithmically with the size of the Skip List, proving the Skip List is a fast and viable alternative to a balanced tree data structure.
 
 ### key functions
+
+- **find(string search_key, string new_data)**: searches for and returns a node with given search_key while updating pointers in update array - helper for insert() and delete().
+- **insert(string search_key, string new_data)**: inserts a new node into the list, or updates node data if key already in list.
+- **remove(string search_key)**: removes a node from the list.
+- **contains(string search_key)**: determines whether or not list contains a key and prints out search path.
+
 
 ## operation
 
