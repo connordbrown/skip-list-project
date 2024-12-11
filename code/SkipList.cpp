@@ -79,8 +79,8 @@ node* SkipList::find(node* current, string search_key, vector<node*>& update) {
         update.at(i) = current;
     }
     // reach level containing search key
-    current = current->next_ptrs.at(0); // FIX THIS - if search_key < this number
-
+    current = current->next_ptrs.at(0);
+    
     return current;
 }
 
@@ -92,6 +92,8 @@ void SkipList::insert(string search_key, string new_data) {
     // if list is empty
     if (current == NULL) {
         current = init_node(search_key, new_data);
+        // set head node
+        set_head(current);
         // set initial level
         set_level(0);
         return;

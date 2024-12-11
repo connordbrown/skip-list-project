@@ -45,11 +45,15 @@ int main(){
     // FIXME: Why is insert() not always inserting???
     list.insert("almond", "brown");
 
+    list.insert("pear", "white");
+    cout << list.report() << endl;
+
+    list.remove("pear");
+
     cout << list.report() << endl;
     cout << list.size() << endl;
 
-    list.insert("pear", "white");
-    cout << list.report() << endl;
+
 
 
 
