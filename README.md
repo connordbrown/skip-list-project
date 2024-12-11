@@ -15,13 +15,13 @@ Level 1: HEAD -> 6 -> 9 -> 25 -> NULL
 Level 0: HEAD -> 3 -> 6 -> 7 -> 9 -> 12 -> 19 -> 21 -> 25 -> 26 -> NULL
 ```
 
-Level 0 contains all elements of the list. Traversing it as is would give a time complexity of O(n). However, if we start at Level 3 and make our way down the levels, we can skip over many of the nodes of the list. If we searched for 25 using linear iteration, the search path would include 8 nodes:
+Level 0 contains all elements of the list. Traversing it as is would give a time complexity of O(n). If we searched for 25 using standardlinear iteration, the search path would include 8 nodes:
 
 ```text
 3 -> 6 -> 7 -> 9 -> 12 -> 19 -> 21 -> 25
 ```
 
-Using Skip List iteration from the top level, the search path only uses 2 nodes:
+However, if we start at Level 3 and make our way down the levels using Skip List iteration, we can skip over many of the nodes of the list. The search path only uses 2 nodes.
 
 ```text
 6 -> 25
