@@ -80,7 +80,7 @@ node* SkipList::find(node* current, string search_key, vector<node*>& update) {
     }
 
     // reach level containing search key
-    current = current->next_ptrs.at(0); // FIXME: should check for location
+    current = current->next_ptrs.at(0);
     
     return current;
 }
@@ -131,7 +131,7 @@ void SkipList::remove(string search_key) {
 
     // if key in list
     if (current != NULL && current->key == search_key) {
-        for (int i = 0; i < get_level(); ++i) {
+        for (int i = 0; i <= get_level(); ++i) { // be careful: end condition <= instead of < like in insert()
             if (update.at(i)->next_ptrs.at(i) != current) {
                 break;
             }

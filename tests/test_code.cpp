@@ -166,36 +166,49 @@ TEST_F(test_SkipList, Test_insert) {
   add_points_to_grade(1);
 }
 
-// TEST_F(test_SkipList, Test_remove) {
-//   SkipList mylist;
+TEST_F(test_SkipList, Test_remove) {
+  SkipList mylist;
 
-//   // create a five node list
-//   node* top_ptr = build_five_node_list_helper("almond", "apple", "banana", "grape", "tangerine");
-//   // set current list level to 1
-//   mylist.set_level(1);
-//   // replace mylist top pointer with this new top
-//   mylist.set_head(top_ptr);
+  // create a five node list
+  node* top_ptr = build_five_node_list_helper("almond", "apple", "banana", "grape", "tangerine");
+  // set current list level to 1
+  mylist.set_level(1);
+  // replace mylist top pointer with this new top
+  mylist.set_head(top_ptr);
 
-//   cout << mylist.report() << endl;
-//   // delete at beginning
-//   mylist.remove("almond");
-//   cout << mylist.report() << endl;
-//   node* search_node = top_ptr->next_ptrs.at(0);
-//   ASSERT_EQ("apple", search_node->key);
-//   add_points_to_grade(1);
-  
-//   // // delete in middle
-//   // mylist.remove("banana");
-//   // search_node = top_ptr->next_ptrs.at(0)->next_ptrs.at(0);
-//   // ASSERT_EQ("grape", search_node->key);
-//   // add_points_to_grade(1);
-//   // mylist.report();
-//   // delete at end
-//   // mylist.remove("tangerine");
-//   // search_node = top_ptr->next_ptrs.at(0)->next_ptrs.at(0);
-//   // ASSERT_EQ("grape", search_node->key);
-//   // add_points_to_grade(1);
-// }
+  // delete at beginning
+  mylist.remove("almond");
+  // 1: HEAD -> banana -> tangerine -> NULL
+  // 0: HEAD -> apple -> banana -> grape -> tangerine -> NULL
+  node* search_node1 = top_ptr->next_ptrs.at(1);
+  ASSERT_EQ("banana", search_node1->key);
+  add_points_to_grade(1);
+  node* search_node0 = top_ptr->next_ptrs.at(0);
+  ASSERT_EQ("apple", search_node0->key);
+  add_points_to_grade(1);
+
+  // delete in middle
+  mylist.remove("banana");
+  // 1: HEAD -> tangerine -> NULL
+  // 0: HEAD -> apple -> grape -> tangerine -> NULL
+  search_node1 = top_ptr->next_ptrs.at(1);
+  ASSERT_EQ("tangerine", search_node1->key);
+  add_points_to_grade(1);
+  search_node0 = top_ptr->next_ptrs.at(0)->next_ptrs.at(0);
+  ASSERT_EQ("grape", search_node0->key);
+  add_points_to_grade(1);
+
+  // delete at end
+  mylist.remove("tangerine");
+  // 1: HEAD -> NULL
+  // 0: HEAD -> apple -> grape -> NULL
+  search_node1 = top_ptr->next_ptrs.at(1);
+  ASSERT_EQ(NULL, search_node1);
+  add_points_to_grade(1);
+  search_node0 = top_ptr->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0);
+  ASSERT_EQ(NULL, search_node0);
+  add_points_to_grade(1);
+}
 
 TEST_F(test_SkipList, Test_size) {
   SkipList mylist;
@@ -221,8 +234,8 @@ TEST_F(test_SkipList, Test_contains) {
   // replace mylist top pointer with this new top
   mylist.set_head(top_ptr);
 
-  ASSERT_EQ(true, mylist.contains("grape"));
+  ASSERT_TRUE(mylist.contains("grape"));
   add_points_to_grade(1);
-  ASSERT_EQ(false, mylist.contains("dragonfruit"));
+  ASSERT_FALSE(mylist.contains("dragonfruit"));
   add_points_to_grade(1);
 }
