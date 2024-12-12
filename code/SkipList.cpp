@@ -180,18 +180,18 @@ int SkipList::size() {
 // determines whether or not list contains a key and prints out search path
 bool SkipList::contains(string search_key) {
     node* current = get_head();
-    string search_path = "";
+    //string search_path = "";
     for (int i = get_level(); i >= 0; --i) {
         while (current->next_ptrs.at(i) != NULL && current->next_ptrs.at(i)->key < search_key) {
-            search_path += current->key + " ";
+            //search_path += current->key + " ";
             current = current->next_ptrs.at(i);
         }
     }
     // reach level containing search_key
     current = current->next_ptrs.at(0);
     if (current != NULL && current->key == search_key) {
-        search_path += current->key;
-        cout << search_path << endl;
+        //search_path += current->key;
+        //cout << search_path << endl;
         return true;
     }
     return false;

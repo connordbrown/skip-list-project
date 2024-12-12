@@ -199,7 +199,7 @@ TEST_F(test_SkipList, Test_insert) {
 
 TEST_F(test_SkipList, Test_size) {
   SkipList mylist;
-  
+
   // create a five node list
   node* top_ptr = build_five_node_list_helper("almond", "apple", "banana", "grape", "tangerine");
   // set current list level to 1
@@ -208,4 +208,21 @@ TEST_F(test_SkipList, Test_size) {
   mylist.set_head(top_ptr);
 
   ASSERT_EQ(5, mylist.size());
+  add_points_to_grade(1);
+}
+
+TEST_F(test_SkipList, Test_contains) {
+  SkipList mylist;
+  
+  // create a five node list
+  node* top_ptr = build_five_node_list_helper("almond", "apple", "banana", "grape", "tangerine");
+  // set current list level to 1
+  mylist.set_level(1);
+  // replace mylist top pointer with this new top
+  mylist.set_head(top_ptr);
+
+  ASSERT_EQ(true, mylist.contains("grape"));
+  add_points_to_grade(1);
+  ASSERT_EQ(false, mylist.contains("dragonfruit"));
+  add_points_to_grade(1);
 }
