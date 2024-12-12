@@ -39,7 +39,7 @@ For my implementation and demonstration, I used a common ordered set of data: an
 
 - **remove(string search_key)**: removes a node from the list.
 
-- **contains(string search_key)**: determines whether or not list contains a key and prints out search path.
+- **contains(string search_key)**: determines whether or not list contains a key and can be modified to print search path.
 
 ### *node structure*
 

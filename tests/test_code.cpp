@@ -55,9 +55,8 @@ protected:
   static double max_grade;
 };
 
-// FIXME: Edit number of points
 double test_SkipList::total_grade = 0;
-double test_SkipList::max_grade = 36;
+double test_SkipList::max_grade = 19;
 
 TEST_F(test_SkipList, Test_init_node) {
   SkipList mylist;
@@ -163,6 +162,12 @@ TEST_F(test_SkipList, Test_insert) {
   mylist.insert("watermelon", "green");
   search_node = top_ptr->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0);
   ASSERT_EQ("watermelon", search_node->key);
+  add_points_to_grade(1);
+
+  // update data
+  mylist.insert("watermelon", "blue");
+  search_node = top_ptr->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0);
+  ASSERT_EQ("blue", search_node->data);
   add_points_to_grade(1);
 }
 
