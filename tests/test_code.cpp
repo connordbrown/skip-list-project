@@ -166,4 +166,46 @@ TEST_F(test_SkipList, Test_insert) {
   add_points_to_grade(1);
 }
 
+// TEST_F(test_SkipList, Test_remove) {
+//   SkipList mylist;
 
+//   // create a five node list
+//   node* top_ptr = build_five_node_list_helper("almond", "apple", "banana", "grape", "tangerine");
+//   // set current list level to 1
+//   mylist.set_level(1);
+//   // replace mylist top pointer with this new top
+//   mylist.set_head(top_ptr);
+
+//   cout << mylist.report() << endl;
+//   // delete at beginning
+//   mylist.remove("almond");
+//   cout << mylist.report() << endl;
+//   node* search_node = top_ptr->next_ptrs.at(0);
+//   ASSERT_EQ("apple", search_node->key);
+//   add_points_to_grade(1);
+  
+//   // // delete in middle
+//   // mylist.remove("banana");
+//   // search_node = top_ptr->next_ptrs.at(0)->next_ptrs.at(0);
+//   // ASSERT_EQ("grape", search_node->key);
+//   // add_points_to_grade(1);
+//   // mylist.report();
+//   // delete at end
+//   // mylist.remove("tangerine");
+//   // search_node = top_ptr->next_ptrs.at(0)->next_ptrs.at(0);
+//   // ASSERT_EQ("grape", search_node->key);
+//   // add_points_to_grade(1);
+// }
+
+TEST_F(test_SkipList, Test_size) {
+  SkipList mylist;
+  
+  // create a five node list
+  node* top_ptr = build_five_node_list_helper("almond", "apple", "banana", "grape", "tangerine");
+  // set current list level to 1
+  mylist.set_level(1);
+  // replace mylist top pointer with this new top
+  mylist.set_head(top_ptr);
+
+  ASSERT_EQ(5, mylist.size());
+}
