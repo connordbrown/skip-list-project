@@ -151,9 +151,11 @@ void SkipList::remove(string search_key) {
 // generates and returns a string showing contents of each list level
 string SkipList::report() {
     string ret = "";
-    int level = get_level();
-    for (int i = level ; i >= 0; --i) {
+    for (int i = get_level() ; i >= 0; --i) {
         node* current = get_head();
+        if (current == NULL) {
+            return "";
+        }
         ret += to_string(i) + ": ";
         while (current != NULL) {
             ret += current->key + " -> ";

@@ -11,7 +11,6 @@ int main(){
     SkipList list;
     list.set_level(1);
 
-
     node* head = list.init_node("HEAD", "");   
     list.set_head(head);
 
@@ -49,7 +48,6 @@ int main(){
     list.remove("pear");
     cout << list.contains("pear") << endl;
 
-    // FIXME: Wrong location
     list.insert("acai", "red");
 
     list.insert("pear", "white");

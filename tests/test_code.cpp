@@ -1,4 +1,3 @@
-// Checkout TEST_F functions below to learn what is being tested.
 #include "../code/SkipList.h"
 #include <gtest/gtest.h>
 
@@ -58,20 +57,86 @@ protected:
 
 // FIXME: Edit number of points
 double test_SkipList::total_grade = 0;
-double test_SkipList::max_grade = 38;
+double test_SkipList::max_grade = 36;
 
-TEST_F(test_SkipList, TestInitialization) {
+TEST_F(test_SkipList, Test_init_node) {
   SkipList mylist;
-  ASSERT_FALSE(mylist.get_head()); // expect top to be NULL
+  // expect top to be NULL
+  ASSERT_FALSE(mylist.get_head());
   add_points_to_grade(1);
   node* root = mylist.init_node("42", "forty-two");
-  ASSERT_TRUE(root); // expect root itself to have a pointer (not NULL)
+  // expect root itself to have a pointer (not NULL)
+  ASSERT_TRUE(root);
   add_points_to_grade(1);
   ASSERT_EQ("forty-two", root->data);
   add_points_to_grade(1);
+  // expect next pointers to be null
   for (unsigned int i = 0; i < root->next_ptrs.size(); ++i) {
     ASSERT_FALSE(root->next_ptrs.at(i)); 
   }
-  // expect next pointer to be null
   add_points_to_grade(1);
 }
+
+node* build_five_node_list_helper(string zero, string one, string two, string three, string four) {
+  // 1: HEAD -> almond -> banana -> tangerine -> NULL
+  // 0: HEAD -> almond -> apple -> banana -> grape -> tangerine -> NULL
+  node* top = new node;
+  top->key = "HEAD";
+  top->next_ptrs.resize(15, NULL);
+
+  node* node0 = new node;
+  node0->key = zero;
+  node0->next_ptrs.resize(15, NULL);
+
+  node* node1 = new node;
+  node1->key = one;
+  node1->next_ptrs.resize(15, NULL);
+
+  node* node2 = new node;
+  node2->key = two;
+  node2->next_ptrs.resize(15, NULL);
+
+  node* node3 = new node;
+  node3->key = three;
+  node3->next_ptrs.resize(15, NULL);
+
+  node* node4 = new node;
+  node4->key = four;
+  node4->next_ptrs.resize(15, NULL);
+
+  top->next_ptrs.at(1) = node0;
+  top->next_ptrs.at(0) = node0;
+
+  node0->next_ptrs.at(1) = node2; 
+  node0->next_ptrs.at(0) = node1;
+ 
+  node1->next_ptrs.at(0) = node2;
+
+  node2->next_ptrs.at(1) = node4;
+  node2->next_ptrs.at(0) = node3;
+
+  node3->next_ptrs.at(0) = node4;
+
+  return top;
+}
+
+TEST_F(test_SkipList, Test_report) {
+  SkipList mylist;
+
+  ASSERT_EQ("", mylist.report());
+  add_points_to_grade(1);
+
+  // create a five node list and test the report result
+  node* top = build_five_node_list_helper("almond", "apple", "banana", "grape", "tangerine");
+  // set current list level to 1
+  mylist.set_level(1);
+  // replace mylist top_ptr_ with this new top
+  mylist.set_head(top);
+
+  // check that report() matches report
+  string report = "1: HEAD -> almond -> banana -> tangerine -> NULL\n0: HEAD -> almond -> apple -> banana -> grape -> tangerine -> NULL\n";
+  ASSERT_EQ(report, mylist.report());
+  add_points_to_grade(1);
+}
+
+

@@ -10,8 +10,8 @@
 using namespace std;
 
 struct node {
-    string key; // search key
-    string data; // node data
+    string key = ""; // search key
+    string data = ""; // node data
     vector<node*> next_ptrs; // array of forward pointers
 };
 
