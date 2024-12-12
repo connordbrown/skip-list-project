@@ -20,12 +20,12 @@ void SkipList::set_head(node* head_ptr) {
     this->head_ptr = head_ptr;
 }
 
-// gets list level
+// gets current list level
 int SkipList::get_level() {
     return this->list_level;
 }
 
-// sets list level
+// sets current list level
 void SkipList::set_level(int new_level) {
     this->list_level = new_level;
 }
@@ -78,8 +78,9 @@ node* SkipList::find(node* current, string search_key, vector<node*>& update) {
         // node preceding insertion/update point
         update.at(i) = current;
     }
+
     // reach level containing search key
-    current = current->next_ptrs.at(0);
+    current = current->next_ptrs.at(0); // FIXME: should check for location
     
     return current;
 }
@@ -88,16 +89,6 @@ node* SkipList::find(node* current, string search_key, vector<node*>& update) {
 void SkipList::insert(string search_key, string new_data) {
     node* current = get_head();
     vector<node*> update(MAX_LEVEL, NULL);
-
-    // if list is empty
-    if (current == NULL) {
-        current = init_node(search_key, new_data);
-        // set head node
-        set_head(current);
-        // set initial level
-        set_level(0);
-        return;
-    }
 
     // traverse list to potential insertion point
     current = find(current, search_key, update);
@@ -116,8 +107,9 @@ void SkipList::insert(string search_key, string new_data) {
             set_level(rand_lvl);
         }
         node* new_node = init_node(search_key, new_data);
+
         // update forward pointers
-        for (int i = 0; i < rand_lvl; ++i) {
+        for (int i = 0; i < get_level(); ++i) {
             new_node->next_ptrs.at(i) = update.at(i)->next_ptrs.at(i);
             update.at(i)->next_ptrs.at(i) = new_node;
         }
