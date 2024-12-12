@@ -17,7 +17,7 @@ struct node {
 
 class SkipList {
     private:
-        node* head_ptr; // head of list
+        node* head_ptr; // head of list - NOTE: "dummy" head
         int list_level; // current maximum level of list
         int MAX_LEVEL; // absolute maximum level of list
 

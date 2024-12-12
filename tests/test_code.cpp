@@ -126,16 +126,43 @@ TEST_F(test_SkipList, Test_report) {
   ASSERT_EQ("", mylist.report());
   add_points_to_grade(1);
 
-  // create a five node list and test the report result
-  node* top = build_five_node_list_helper("almond", "apple", "banana", "grape", "tangerine");
+  // create a five node list
+  node* top_ptr = build_five_node_list_helper("almond", "apple", "banana", "grape", "tangerine");
   // set current list level to 1
   mylist.set_level(1);
-  // replace mylist top_ptr_ with this new top
-  mylist.set_head(top);
+  // replace mylist top pointer with this new top
+  mylist.set_head(top_ptr);
 
   // check that report() matches report
   string report = "1: HEAD -> almond -> banana -> tangerine -> NULL\n0: HEAD -> almond -> apple -> banana -> grape -> tangerine -> NULL\n";
   ASSERT_EQ(report, mylist.report());
+  add_points_to_grade(1);
+}
+
+TEST_F(test_SkipList, Test_insert) {
+  SkipList mylist;
+
+  // create a five node list
+  node* top_ptr = build_five_node_list_helper("almond", "apple", "banana", "grape", "tangerine");
+  // set current list level to 1
+  mylist.set_level(1);
+  // replace mylist top pointer with this new top
+  mylist.set_head(top_ptr);
+
+  // insert at beginning
+  mylist.insert("acai", "red");
+  node* search_node = top_ptr->next_ptrs.at(0);
+  ASSERT_EQ("acai", search_node->key);
+  add_points_to_grade(1);
+  // insert in middle
+  mylist.insert("dragonfruit", "green");
+  search_node = top_ptr->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0);
+  ASSERT_EQ("dragonfruit", search_node->key);
+  add_points_to_grade(1);
+  // insert at end
+  mylist.insert("watermelon", "green");
+  search_node = top_ptr->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0)->next_ptrs.at(0);
+  ASSERT_EQ("watermelon", search_node->key);
   add_points_to_grade(1);
 }
 
