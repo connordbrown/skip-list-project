@@ -66,8 +66,43 @@ make && ./run_app
 
 ## sample output
 ```text
-Check back soon!
+Populating dictionary with 10 items...
+Done.
+Populating dictionary with 100 items...
+Done.
+Populating dictionary with 1000 items...
+Done.
+Populating dictionary with 10000 items...
+Done.
+Populating dictionary with 50000 items...
+Done.
+
+Inserting item into dictionary of size 10...
+Done.
+Elapsed time for insert: 0.011 milliseconds
+
+
+Inserting item into dictionary of size 100...
+Done.
+Elapsed time for insert: 0.005 milliseconds
+
+
+Inserting item into dictionary of size 1000...
+Done.
+Elapsed time for insert: 0.075 milliseconds
+
+
+Inserting item into dictionary of size 10000...
+Done.
+Elapsed time for insert: 1.163 milliseconds
+
+
+Inserting item into dictionary of size 50000...
+Done.
+Elapsed time for insert: 2.015 milliseconds
 ```
+
+This sample run shows that as the dictionary size grows, the runtime for the insert operation grows at a near-logarithmic rate, instead of linearly. This is as expected for the projected runtime of a Skip List.
 
 ## author
 

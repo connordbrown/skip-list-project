@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int main() {
+void sample() {
 
     // VISUAL TESTING
     SkipList list;
@@ -48,5 +48,4 @@ int main() {
 
     cout << list.report() << endl;
 
-    return 0;
 }

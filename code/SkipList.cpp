@@ -4,7 +4,7 @@
 SkipList::SkipList() {
     head_ptr = NULL;
     list_level = 0;
-    MAX_LEVEL = 15;
+    MAX_LEVEL = 100;
 }
 
 // destructor
@@ -88,7 +88,14 @@ node* SkipList::find(node* current, string search_key, vector<node*>& update) {
 // inserts a new node into the list, or updates node if key already in list
 void SkipList::insert(string search_key, string new_data) {
     node* current = get_head();
-    vector<node*> update(MAX_LEVEL, NULL);
+    vector<node*> update(MAX_LEVEL + 1, NULL);
+
+    // if list is empty
+    if (current == NULL) {
+        node* top = init_node("HEAD", "");
+        set_head(top);
+        return;
+    }
 
     // traverse list to potential insertion point
     current = find(current, search_key, update);
@@ -119,7 +126,7 @@ void SkipList::insert(string search_key, string new_data) {
 // removes a node from the list
 void SkipList::remove(string search_key) {
     node* current = get_head();
-    vector<node*> update(MAX_LEVEL, NULL);
+    vector<node*> update(MAX_LEVEL + 1, NULL);
 
     // if list is empty
     if (current == NULL) {
@@ -169,7 +176,7 @@ string SkipList::report() {
 // calculates and returns total number of nodes in list (via bottom level)
 int SkipList::size() {
     node* current = get_head();
-    int count = -1;
+    int count = 0;
     while (current != NULL) {
         count += 1;
         current = current->next_ptrs.at(0);
