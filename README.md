@@ -102,8 +102,6 @@ Done.
 Elapsed time for insert: 2.015 milliseconds
 ```
 
-This sample run shows that as the dictionary size grows, the runtime for the insert operation grows at a near-logarithmic rate, instead of linearly. This is as expected for the projected runtime of a Skip List.
-
 ## author
 
 Written by Connor D. Brown in 2024.
