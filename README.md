@@ -25,13 +25,11 @@ Level 0 contains all elements of the list. Traversing it as is would give a time
 3 -> 6 -> 7 -> 9 -> 12 -> 19 -> 21 -> 25
 ```
 
-However, if we start at Level 3 and make our way down the levels using Skip List iteration, we can skip over many of the nodes of the list. The search path only uses 2 nodes.
+However, if we start at Level 3 and make our way down the levels using Skip List iteration, we can skip over many of the nodes of the list. Starting at Level 3, we visit 6, then drop down to Level 2 and visit 25.The search path only uses 2 nodes, making it much faster.
 
 ```text
 6 -> 25
 ```
-
-This search is much faster.
 
 For my implementation and demonstration, I used a common ordered set of data: an English dictionary. The nodes contain words and their (currently empty) definitions, and I record the time it takes to perform a given CRUD operation, insert(). If my implementation is correct, then the runtime will, on average, grow logarithmically with the size of the Skip List, proving the Skip List is a fast and viable alternative to a balanced tree data structure.
 
