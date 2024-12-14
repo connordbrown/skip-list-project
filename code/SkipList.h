@@ -11,7 +11,7 @@ using namespace std;
 struct node {
     string key = ""; // search key
     string data = ""; // node data
-    vector<node*> next_ptrs; // array of forward pointers
+    vector<node*> next_ptrs; // array of forward pointers for node
 };
 
 class SkipList {

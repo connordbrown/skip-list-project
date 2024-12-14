@@ -4,7 +4,7 @@
 
 This project is a C++ implementation of a Skip List.
 
-A Skip List is a specialized form of a Linked List that uses multiple ordered Linked List "levels" to search for, insert, and delete elements. This is done through each node having multiple forward pointers. The levels enable “skipping” over large sections of the list. The benefit that comes from such a design is that Skip Lists have an average runtime complexity of O(log n) for all CRUD operations. In other words, they have the speed and efficiency of a Binary Search Tree, but the simplicity of a linear List data type. They are used in things like calendars, event scheduling, large dictionaries, and stock market tickers.
+A Skip List is a specialized form of a Linked List that uses multiple ordered Linked List "levels" to search for, insert, and delete elements. This is done through each node having multiple forward pointers. The levels enable “skipping” over large sections of the list. The benefit that comes from such a design is that Skip Lists have an average runtime complexity of O(log n) for all CRUD operations (search, insert, update, and delete). In other words, they have the speed and efficiency of a Binary Search Tree, but the simplicity of a linear List data type. They are used in things like calendars, event scheduling, large dictionaries, and stock market tickers.
 
 For example:
 
@@ -29,7 +29,7 @@ However, if we start at Level 3 and make our way down the levels using Skip List
 
 This search is much faster.
 
-For my implementation and demonstration, I used a common ordered set of data: an English dictionary. The nodes contain words and their definitions, and I record the time it takes to perform CRUD operations (search, insert, update, and delete). If my implementation is correct, then the runtimes will, on average, grow logarithmically with the size of the Skip List, proving the Skip List is a fast and viable alternative to a balanced tree data structure.
+For my implementation and demonstration, I used a common ordered set of data: an English dictionary. The nodes contain words and their (currently empty) definitions, and I record the time it takes to perform a given CRUD operation, insert(). If my implementation is correct, then the runtime will, on average, grow logarithmically with the size of the Skip List, proving the Skip List is a fast and viable alternative to a balanced tree data structure.
 
 ### *key functions: SkipList class*
 
