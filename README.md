@@ -4,7 +4,11 @@
 
 This project is a C++ implementation of a Skip List.
 
-A Skip List is a specialized form of a Linked List that uses multiple ordered Linked List "levels" to search for, insert, and delete elements. This is done through each node having multiple forward pointers. The levels enable “skipping” over large sections of the list. The benefit that comes from such a design is that Skip Lists have an average runtime complexity of O(log n) for all CRUD operations (search, insert, update, and delete). In other words, they have the speed and efficiency of a Binary Search Tree, but the simplicity of a linear List data type. They are used in things like calendars, event scheduling, large dictionaries, and stock market tickers.
+A Skip List is a specialized form of a Linked List that uses multiple ordered Linked List "levels" to search for, insert, and delete elements. This is done through each list node having multiple forward pointers. The levels enable “skipping” over large sections of the list.
+
+Think of it like a highway: regular lanes (lower levels) have more cars and run at a slower speed, while express lanes (higher levels) have fewer cars and can run at a higher speed.
+
+The benefit that comes from such a design is that Skip Lists have an average runtime complexity of O(log n) for all CRUD operations (search, insert, update, and delete). In other words, they have the speed and efficiency of a Binary Search Tree, but the simplicity of a linear List data type. They are used in things like calendars, event scheduling, large dictionaries, and stock market tickers.
 
 For example:
 
