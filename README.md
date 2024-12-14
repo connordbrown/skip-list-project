@@ -102,7 +102,7 @@ Done.
 Elapsed time for insert: 2.015 milliseconds
 ```
 
-As seen in the above sample, the runtime of insert() does not linearly increase with list size, but increases at a smaller rate. The next step to take would be to do multiple insert() runs for given list sizes, then plot a graph and compare it to both linear and logarithmic lines to see how it actually performs.
+As seen in the above sample, the runtime of insert() does not linearly increase with list size; it instead increases at a much smaller rate. The next step to take would be to do multiple insert() runs for given list sizes, then plot a graph and compare it to both linear and logarithmic lines to objectively prove that Skip Lists have an average runtime of O(log n).
 
 ## author
 
