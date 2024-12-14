@@ -6,8 +6,9 @@
 
 using namespace std;
 
+// extracts words from file and inserts num_items words into list
 void populate_dictionary(SkipList& list, int num_items) {
-    string filename = "../words.txt"; // Replace with your filename
+    string filename = "../words.txt";
     ifstream file(filename);
 
     if (file.is_open()) {
@@ -27,11 +28,11 @@ void populate_dictionary(SkipList& list, int num_items) {
 
 int main(){
     /*
-    NOTES FOR APPLICATION
-    Test using dictionary of words
-    Insert 10, 100, 1000, 10000, 100000, 200000, 300000, 400000 words
-    NOTE: after 10000 items, need to increase MAX_LEVEL
-    Track time taken for process to prove logarithmic time wrt list size
+    NOTES FOR APPLICATION:
+    - Test Skip List using dictionaries of words
+    - Insert 10, 100, 1000, 10000, and 50000 words into different lists
+    - NOTE: if out of bounds error occurs during runtime, may need to increase MAX_LEVEL to raise list capacity
+    - Track time taken to insert a new node at/near end of list
     */
 
    vector<int> list_sizes = {10, 100, 1000, 10000, 50000};
@@ -44,6 +45,7 @@ int main(){
    }
 
    for (SkipList list : lists) {
+        // declare clock and time variables
         clock_t start_time, end_time;
         double elapsed_time;
 
@@ -66,13 +68,7 @@ int main(){
 
         cout << "Elapsed time for insert: " << elapsed_time << " milliseconds" << endl;
         cout << endl;
-
    }
 
-
-
-
-
-
-    return 0;
+    return 0; // end main
 }

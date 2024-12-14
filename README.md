@@ -29,7 +29,7 @@ However, if we start at Level 3 and make our way down the levels using Skip List
 
 This search is much faster.
 
-For my implementation and demonstration, I used a common ordered set of data: an English dictionary. The nodes contain words and their definitions, and I record the time it takes to perform CRUD operations (search, insert, update, and delete). If my implementation is correct, then the runtimes will grow logarithmically with the size of the Skip List, proving the Skip List is a fast and viable alternative to a balanced tree data structure.
+For my implementation and demonstration, I used a common ordered set of data: an English dictionary. The nodes contain words and their definitions, and I record the time it takes to perform CRUD operations (search, insert, update, and delete). If my implementation is correct, then the runtimes will, on average, grow logarithmically with the size of the Skip List, proving the Skip List is a fast and viable alternative to a balanced tree data structure.
 
 ### *key functions: SkipList class*
 
@@ -101,6 +101,8 @@ Inserting item into dictionary of size 50000...
 Done.
 Elapsed time for insert: 2.015 milliseconds
 ```
+
+As seen in the above sample, the runtime of insert() does not linearly increase with list size, but increases at a smaller rate. The next step to take would be to do multiple insert() runs for given list sizes, then plot a graph and compare it to both linear and logarithmic lines to see how it actually performs.
 
 ## author
 
