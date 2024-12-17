@@ -49,7 +49,7 @@ For my implementation and demonstration, I used a common ordered set of data: an
 
 - **string data**: values/data contained in node.
 
-- **vector<node*>** next_ptrs: list of forward pointers to next nodes in list.
+- **vector<node\*>** next_ptrs: list of forward pointers to next nodes in list.
 
 
 ## operation
